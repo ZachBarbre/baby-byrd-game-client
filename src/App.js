@@ -1,6 +1,8 @@
 import React from 'react';
+import Guesses from './components/Guesses';
 
-function App() {
+const App = () => {
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -8,9 +10,7 @@ function App() {
         <p>Be born on what day? Weigh how much? Be a girl or boy?</p>
         <p>See the guesses below!</p>
       </header>
-      <main>
-
-      </main>
+      <Guesses />
     </div>
   );
 }
