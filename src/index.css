@@ -1,13 +1,41 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --dark-grey: #2a2d34;
+  --blue: #30c5ff;
+  --light-blue: #a0dde6;
+  --green: #5c946e;
+  --light-green: #80c2af;
+
+  --primary: var(--blue);
+  --primary-light: var(--light-blue);
+  --secondary: var(--green);
+  --secondary-light: var(--light-green);
+  --dark: var(--dark-grey);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Yellowtail&display=swap');
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  box-sizing: border-box;
+}
+
 body {
+
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Montserrat', 'Yellowtail', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
