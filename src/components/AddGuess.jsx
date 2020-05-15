@@ -7,6 +7,7 @@ const AddGuess = () => {
   const [birthDate, setBirthDate] = useState('');
   const [babyWeight, setBabyWeight] = useState('');
   const [sex, setSex] = useState('');
+  const [showForm, setShowForm] = useState(false);
   const [value, dispach] = useContext(StateContext);
 
   const handleSubmit = (e) => {
@@ -25,60 +26,65 @@ const AddGuess = () => {
     setBirthDate('');
     setBabyWeight('');
     setSex('');
+    setShowForm(false);
   }
 
   return(
     <section>
-      <form onSubmit={e => handleSubmit(e)}>
-        <label>
-          Your Name:
-          <input 
-            type="text"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            />
-        </label>
-        <label>
-          Baby Byrd's Birthdate:
-          <input 
-            type="date"
-            name="birthDate"
-            value={birthDate}
-            onChange={(e) => setBirthDate(e.target.value)}
-            />
-        </label>
-        <label>
-          Baby Byrd's Weight: 
-          <input 
-            type="number"
-            name="babyWeight"
-            value={babyWeight}
-            onChange={(e) => setBabyWeight(e.target.value)}
-            />
-        </label>
-        <label>
-          <input 
-            type="radio"
-            name="sex"
-            value="boy"
-            onChange={(e) => setSex(e.target.value)}
-            checked={sex === 'boy'}
-            />
-          Boy
-        </label>
-        <label>
-          <input 
-            type="radio"
-            name="sex"
-            value="girl"
-            onChange={(e) => setSex(e.target.value)}
-            checked={sex === 'girl'}
-            />
-          Girl
-        </label>
-        <button type="submit">Add your Guess</button>
-      </form>
+      {showForm ?  
+        <form onSubmit={e => handleSubmit(e)}>
+          <label>
+            Your Name:
+            <input 
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              />
+          </label>
+          <label>
+            Baby Byrd's Birthdate:
+            <input 
+              type="date"
+              name="birthDate"
+              value={birthDate}
+              onChange={(e) => setBirthDate(e.target.value)}
+              />
+          </label>
+          <label>
+            Baby Byrd's Weight: 
+            <input 
+              type="number"
+              name="babyWeight"
+              value={babyWeight}
+              onChange={(e) => setBabyWeight(e.target.value)}
+              />
+          </label>
+          <label>
+            <input 
+              type="radio"
+              name="sex"
+              value="boy"
+              onChange={(e) => setSex(e.target.value)}
+              checked={sex === 'boy'}
+              />
+            Boy
+          </label>
+          <label>
+            <input 
+              type="radio"
+              name="sex"
+              value="girl"
+              onChange={(e) => setSex(e.target.value)}
+              checked={sex === 'girl'}
+              />
+            Girl
+          </label>
+          <button type="submit">Add your Guess</button>
+        </form>
+      :
+      <button type="button" onClick={() => setShowForm(!showForm)}>Add your Guess!</button>
+      }
     </section>
   )
 }
