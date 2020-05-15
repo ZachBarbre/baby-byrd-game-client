@@ -5,7 +5,7 @@ import StateContext from '../context'
 
 const GuessList = () => {
   const [value, dispach] = useContext(StateContext);
-  
+  console.log(value);
   return(
     <main>  
       <ul>
@@ -14,7 +14,7 @@ const GuessList = () => {
             <h3>{guess.name} thinks...</h3>
             <div>
               Be born {guess.birthDate} 
-              Will weight {guess.babyWeight} 
+              Will weigh {guess.babyWeight} 
               Will be a {guess.sex} 
             </div>
           </li>

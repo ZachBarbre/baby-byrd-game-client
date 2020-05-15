@@ -3,6 +3,7 @@ import Reducer from './reducers';
 import { StateProvider } from './context';
 import GuessList from './components/GuessList';
 import Header from './components/Header';
+import AddGuess from './components/AddGuess';
 
 const App = () => {
   const initalState = [
@@ -28,6 +29,7 @@ const App = () => {
       <StateProvider value={useReducer(Reducer, initalState)}>
         <Header />
         <GuessList />
+        <AddGuess />
       </StateProvider>
     </div>
   );
