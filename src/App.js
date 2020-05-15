@@ -10,15 +10,15 @@ const App = () => {
     {
       _id: "5eb9d1b50724d12367e7798e",
       name: "Zach",
-      babyWeight: 8,
-      birthDate: "August 6th",
+      babyWeight: 8.5,
+      birthDate: "July 6th",
       sex: "boy",
     },
     {
       _id: "5ebab1fe7bf5df0d6e4bdd04",
-      name: "Jon",
+      name: "Jonathan Elliott",
       babyWeight: 6.66,
-      birthDate: "June 6th",
+      birthDate: "June 26th",
       sex: "girl",
     }
   ];

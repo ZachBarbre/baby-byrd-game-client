@@ -7,20 +7,26 @@ const StyledHeader = styled.header`
   justify-content: center;
   align-items: center;
   background-color: var(--primary);
-  color: var(--dark);
   
   h1 {
     font-family: 'Yellowtail', cursive;
     font-size: 3.5rem;
+    color: var(--white);
   }
+`;
 
-  .subheader {
+const Subheader = styled.div`
    width: 80%;
+   max-width: 480px;
    background-color: var(--primary-light);
-   margin-bottom: 5%;
+   margin-bottom: 5vh;
    padding: 0 5%;
-   border-radius: 5%;
+   border-radius: 25px 25px 25px 25px;
    text-align: center;
+   /* font-size: 1.2rem; */
+
+  p {
+    max-width: 340px;
   }
 `;
 
@@ -28,10 +34,10 @@ const Header = () => {
   return(
     <StyledHeader>
       <h1>Baby Byrd will...</h1>
-      <div className="subheader">
+      <Subheader>
         <p>Be born on what day? Weigh how much? Be a girl or boy?</p>
-        <p>See the guesses below!</p>
-      </div>
+        <p style={{fontSize:'1.5rem'}}>See the guesses below!</p>
+      </Subheader>
     </StyledHeader>
   );
 };
