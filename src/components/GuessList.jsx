@@ -29,7 +29,7 @@ li {
 h3 {
   font-family: 'Yellowtail', cursive;
   font-size: 1.65rem;
-  min-width: 220px;
+  min-width: 320px;
   margin: 18px 0;
 }
 
@@ -52,7 +52,7 @@ p {
 
 @media screen and (max-width: 900px) {
   ul {
-    width: 95%;
+    width: 90%;
   }
   li {
     justify-content: space-evenly;
@@ -63,8 +63,8 @@ p {
 }
 
 @media screen and (max-width: 420px) {
-  ul {
-    width: 95%;
+  li {
+    min-width: 280px;
   }
 }
 `;

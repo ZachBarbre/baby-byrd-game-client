@@ -2,6 +2,51 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import StateContext from '../context';
 
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 0 5% 0;
+`;
+
+const Button = styled.button`
+  background-color: var(--primary);
+  color: var(--white);
+  transition: 0.2s ease-in;
+  font-family: 'Yellowtail', cursive; 
+  width: 60%;
+  max-width: 250px;
+  font-size: 1.6rem;
+  padding: 10px 0;
+  border-radius: 5px;
+  border-style: none;
+
+  :hover {
+    background-color: var(--primary-light);
+    /* color: var(--dark); */
+  }
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 80%;
+  max-width: 760px;
+  background-color: var(--primary-light);
+  padding: 5%;
+  border-radius: 25px 25px 25px 25px;
+
+  /* label {
+    display: block;
+  }
+
+  input {
+    width: 300px;
+  } */
+`;
+
 const AddGuess = () => {
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState('');
@@ -30,27 +75,29 @@ const AddGuess = () => {
   }
 
   return(
-    <section>
+    <Section>
       {showForm ?  
-        <form onSubmit={e => handleSubmit(e)}>
-          <label>
+        <Form onSubmit={e => handleSubmit(e)}>
+          <label htmlFor="name">
             Your Name:
-            <input 
-              type="text"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              />
           </label>
-          <label>
+          <input 
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            />
+          
+          <label htmlFor="birthDate">
             Baby Byrd's Birthdate:
-            <input 
-              type="date"
-              name="birthDate"
-              value={birthDate}
-              onChange={(e) => setBirthDate(e.target.value)}
-              />
           </label>
+          <input 
+            type="date"
+            name="birthDate"
+            value={birthDate}
+            onChange={(e) => setBirthDate(e.target.value)}
+            />
+          
           <label>
             Baby Byrd's Weight: 
             <input 
@@ -80,12 +127,12 @@ const AddGuess = () => {
               />
             Girl
           </label>
-          <button type="submit">Add your Guess</button>
-        </form>
+          <Button type="submit">Add your Guess</Button>
+        </Form>
       :
-      <button type="button" onClick={() => setShowForm(!showForm)}>Add your Guess!</button>
+      <Button type="button" onClick={() => setShowForm(!showForm)}>Add your Guess!</Button>
       }
-    </section>
+    </Section>
   )
 }
 

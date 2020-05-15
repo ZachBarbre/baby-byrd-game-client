@@ -1,16 +1,8 @@
 :root {
-  --white: #ffffff;
-  --black: #000000;
-  --dark-grey: #2a2d34;
-  --blue: #30c5ff;
-  --light-blue: #a0dde6;
-  --green: #5c946e;
-  --light-green: #80c2af;
-
+  --white: #F7F7FF;
   --primary: #6BA9DA;
   --primary-light: #60656F;
   --secondary: #C49991;
-  /* --secondary-light: var(--light-green); */
   --dark: #131112;
 }
 
@@ -33,7 +25,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
   color: var(--white);
-  background-color: #F7F7FF;
+  background-color: var(--white);
 }
 
 code {
