@@ -2,9 +2,9 @@ import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import StateContext from '../context' 
 import { get, API_URL } from '../utils/apiConn';
+import Loading from './Loading';
 
 const Main = styled.main`
-/* background-color: var(--primary-light); */
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -87,8 +87,8 @@ const GuessList = () => {
 
   return(
     <Main>
+      {value.length === 0 ? <Loading /> : ''}  
       <ul>
-        {value.length === 0 ? <h2>Loading</h2> : ''}  
         {value.map((guess) => (
           <li key={guess._id}>
             <h3><span>{guess.name}</span> thinks the baby...</h3>
