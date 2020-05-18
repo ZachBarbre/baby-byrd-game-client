@@ -90,13 +90,26 @@ const AddGuess = () => {
     const nameArray = value.map(guess => guess.name.toLowerCase());
     if (nameArray.includes(name.toLowerCase())) {
       setFormError('You already have already guessed.');
+      setName('');
       return false;
     }
-    const formatBirthDate = moment(birthDate).format('MMM Do');
-    const guessArray = value.map(guess => [guess.birthDate, guess.babyWeight, guess.sex])
-    console.log(guessArray);
-    if (guessArray.includes([formatBirthDate, babyWeight, sex])) {
+    const formatBirthDate = moment(birthDate).format('MMMM Do');
+    const formatBabyWeight = Number(babyWeight);
+    let dataMatch = false;
+    value.forEach(guess => {
+      if (
+        guess.birthDate === formatBirthDate &&
+        guess.babyWeight === formatBabyWeight &&
+        guess.sex === sex
+        ) {
+          dataMatch = true
+        }
+    })
+    if (dataMatch) {
       setFormError('Please make a unique guess.')
+      setBabyWeight('');
+      setBirthDate('');
+      setSex('');
       return false;
     }
 
@@ -106,38 +119,33 @@ const AddGuess = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const dataOK = validateData();
-    console.log(dataOK);
-    // if (!name || !babyWeight || !birthDate || !sex) {
-    //   setFormError('Please complete all items');
-    // } else {
-    //   const guessData = {
-    //     name, 
-    //     birthDate,
-    //     babyWeight,
-    //     sex,
-    //   }
-    //   const addedGuess = await post(`${API_URL}/guesses`, guessData);
+    if (dataOK) {
+      const guessData = {
+        name, 
+        birthDate,
+        babyWeight,
+        sex,
+      }
+      const addedGuess = await post(`${API_URL}/guesses`, guessData);
 
-    //   console.log(addedGuess);
-
-    //   dispach({
-    //     type: 'ACTION_ADD_GUESS',
-    //     data: {
-    //       _id: addedGuess._id,
-    //       name, 
-    //       birthDate,
-    //       babyWeight,
-    //       sex
-    //     }
-    //   })
+      dispach({
+        type: 'ACTION_ADD_GUESS',
+        data: {
+          _id: addedGuess._id,
+          name, 
+          birthDate: moment(birthDate).format('MMMM Do'),
+          babyWeight,
+          sex
+        }
+      })
   
-    //   setName('');
-    //   setBirthDate('');
-    //   setBabyWeight('');
-    //   setSex('');
-    //   setShowForm(false);
-    //   setFormError('');
-    // }
+      setName('');
+      setBirthDate('');
+      setBabyWeight('');
+      setSex('');
+      setShowForm(false);
+      setFormError('');
+    }
 
   }
 
