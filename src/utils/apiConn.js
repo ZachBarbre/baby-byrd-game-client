@@ -16,5 +16,5 @@ export const post = async (url, data) => {
   return response.json();
 };
 
-export const API_URL = 'http://babybyrd.herokuapp.com';
+export const API_URL = 'https://babybyrd.herokuapp.com';
 
