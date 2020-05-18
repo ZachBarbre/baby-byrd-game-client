@@ -21,30 +21,47 @@ const Button = styled.button`
   padding: 10px 0;
   border-radius: 5px;
   border-style: none;
+  align-self: center;
+  margin: 2%;
 
   :hover {
-    background-color: var(--primary-light);
+    background-color: ${props => props.showForm ? 'var(--secondary)' : 'var(--primary-light)'};
     /* color: var(--dark); */
   }
 `;
 
-const Form = styled.form`
-  display: flex;
+const FormDiv = styled.div`
+  /* display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center; */
   width: 80%;
-  max-width: 760px;
+  max-width: 380px;
   background-color: var(--primary-light);
-  padding: 5%;
+  padding: 3%;
   border-radius: 25px 25px 25px 25px;
+`;
 
-  /* label {
+const Form = styled.form`
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start; */
+  width: 90%;
+  margin: 0 auto;
+`;
+
+const Control = styled.div`
+  margin: 1% 0;
+  
+  label {
     display: block;
+    margin: 10px 0 5px;
   }
+`;
 
-  input {
-    width: 300px;
-  } */
+const Radio = styled.div`
+  display: block;
+  margin: 10px 0 5%;
 `;
 
 const AddGuess = () => {
@@ -76,59 +93,68 @@ const AddGuess = () => {
 
   return(
     <Section>
-      {showForm ?  
-        <Form onSubmit={e => handleSubmit(e)}>
-          <label htmlFor="name">
-            Your Name:
-          </label>
-          <input 
-            type="text"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            />
-          
-          <label htmlFor="birthDate">
-            Baby Byrd's Birthdate:
-          </label>
-          <input 
-            type="date"
-            name="birthDate"
-            value={birthDate}
-            onChange={(e) => setBirthDate(e.target.value)}
-            />
-          
-          <label>
-            Baby Byrd's Weight: 
-            <input 
-              type="number"
-              name="babyWeight"
-              value={babyWeight}
-              onChange={(e) => setBabyWeight(e.target.value)}
-              />
-          </label>
-          <label>
-            <input 
-              type="radio"
-              name="sex"
-              value="boy"
-              onChange={(e) => setSex(e.target.value)}
-              checked={sex === 'boy'}
-              />
-            Boy
-          </label>
-          <label>
-            <input 
-              type="radio"
-              name="sex"
-              value="girl"
-              onChange={(e) => setSex(e.target.value)}
-              checked={sex === 'girl'}
-              />
-            Girl
-          </label>
-          <Button type="submit">Add your Guess</Button>
-        </Form>
+      {showForm ? 
+        <FormDiv>
+
+          <Form onSubmit={e => handleSubmit(e)}>
+            <Control>
+              <label htmlFor="name">
+                Your Name:
+              </label>
+              <input 
+                type="text"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                />
+            </Control>
+            <Control>
+              <label htmlFor="birthDate">
+                Baby Byrd's Birthdate:
+              </label>
+              <input 
+                type="date"
+                name="birthDate"
+                value={birthDate}
+                onChange={(e) => setBirthDate(e.target.value)}
+                />
+            </Control>
+            <Control>
+              <label htmlFor="babyWeight">
+                Baby Byrd's Weight (lbs): 
+              </label>
+              <input 
+                type="number"
+                name="babyWeight"
+                value={babyWeight}
+                onChange={(e) => setBabyWeight(e.target.value)}
+                />
+            </Control>
+            <Radio>
+              <label>
+                <input 
+                  type="radio"
+                  name="sex"
+                  value="boy"
+                  onChange={(e) => setSex(e.target.value)}
+                  checked={sex === 'boy'}
+                  />
+                Boy
+              </label>
+              <label>
+                <input 
+                  type="radio"
+                  name="sex"
+                  value="girl"
+                  onChange={(e) => setSex(e.target.value)}
+                  checked={sex === 'girl'}
+                  />
+                Girl
+              </label>
+            </Radio>
+            <Button type="submit" showForm={showForm}>Add your Guess</Button>
+          </Form>
+        </FormDiv> 
       :
       <Button type="button" onClick={() => setShowForm(!showForm)}>Add your Guess!</Button>
       }
