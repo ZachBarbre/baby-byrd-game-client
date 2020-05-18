@@ -1,5 +1,5 @@
 const Reducer = (state, action) => {
-  const { _id, name, birthDate, babyWeight, sex } = action;
+  const { _id, name, birthDate, babyWeight, sex } = action.data;
   switch (action.type) {
     case 'ACTION_ADD_GUESS':
       return (
@@ -16,6 +16,8 @@ const Reducer = (state, action) => {
     case 'ACTION_DELETE_GUESS':
         const newState = state.filter(guess => guess._id === _id);
         return newState;
+    case 'ACTION_GET_DATA':
+      return action.data
     default:
       return state;
   }

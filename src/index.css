@@ -1,17 +1,9 @@
 :root {
-  --white: #ffffff;
-  --black: #000000;
-  --dark-grey: #2a2d34;
-  --blue: #30c5ff;
-  --light-blue: #a0dde6;
-  --green: #5c946e;
-  --light-green: #80c2af;
-
-  --primary: var(--blue);
-  --primary-light: var(--light-blue);
-  --secondary: var(--green);
-  --secondary-light: var(--light-green);
-  --dark: var(--dark-grey);
+  --white: #F7F7FF;
+  --primary: #6BA9DA;
+  --primary-light: #60656F;
+  --secondary: #C49991;
+  --dark: #131112;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Yellowtail&display=swap');
@@ -32,6 +24,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
+  color: var(--white);
+  background-color: var(--white);
 }
 
 code {
