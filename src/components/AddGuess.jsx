@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 import StateContext from '../context';
+import { post, API_URL } from '../utils/apiConn';
 
 const Section = styled.section`
   display: flex;
@@ -40,6 +42,10 @@ const FormDiv = styled.div`
   background-color: var(--primary-light);
   padding: 3%;
   border-radius: 25px 25px 25px 25px;
+
+  p {
+    color: var(--primary);
+  }
 `;
 
 const Form = styled.form`
@@ -55,7 +61,10 @@ const Control = styled.div`
   
   label {
     display: block;
-    margin: 10px 0 5px;
+  }
+
+  input {
+    margin: 5px 0 10px;
   }
 `;
 
@@ -71,32 +80,73 @@ const AddGuess = () => {
   const [sex, setSex] = useState('');
   const [showForm, setShowForm] = useState(false);
   const [value, dispach] = useContext(StateContext);
+  const [formError, setFormError] = useState('');
 
-  const handleSubmit = (e) => {
+  const validateData = () => {
+    if (!name || !babyWeight || !birthDate || !sex) {
+      setFormError('Please complete all items.');
+      return false;
+    }
+    const nameArray = value.map(guess => guess.name.toLowerCase());
+    if (nameArray.includes(name.toLowerCase())) {
+      setFormError('You already have already guessed.');
+      return false;
+    }
+    const formatBirthDate = moment(birthDate).format('MMM Do');
+    const guessArray = value.map(guess => [guess.birthDate, guess.babyWeight, guess.sex])
+    console.log(guessArray);
+    if (guessArray.includes([formatBirthDate, babyWeight, sex])) {
+      setFormError('Please make a unique guess.')
+      return false;
+    }
+
+    return true;
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const dataOK = validateData();
+    console.log(dataOK);
+    // if (!name || !babyWeight || !birthDate || !sex) {
+    //   setFormError('Please complete all items');
+    // } else {
+    //   const guessData = {
+    //     name, 
+    //     birthDate,
+    //     babyWeight,
+    //     sex,
+    //   }
+    //   const addedGuess = await post(`${API_URL}/guesses`, guessData);
 
-    dispach({
-      type: 'ACTION_ADD_GUESS',
-      _id: Math.floor(Math.random()*100) + Math.floor(Math.random()*100),
-      name, 
-      birthDate,
-      babyWeight,
-      sex
-    })
+    //   console.log(addedGuess);
 
-    setName('');
-    setBirthDate('');
-    setBabyWeight('');
-    setSex('');
-    setShowForm(false);
+    //   dispach({
+    //     type: 'ACTION_ADD_GUESS',
+    //     data: {
+    //       _id: addedGuess._id,
+    //       name, 
+    //       birthDate,
+    //       babyWeight,
+    //       sex
+    //     }
+    //   })
+  
+    //   setName('');
+    //   setBirthDate('');
+    //   setBabyWeight('');
+    //   setSex('');
+    //   setShowForm(false);
+    //   setFormError('');
+    // }
+
   }
 
   return(
     <Section>
       {showForm ? 
         <FormDiv>
-
           <Form onSubmit={e => handleSubmit(e)}>
+            {formError ? <p>{formError}</p> : ''}
             <Control>
               <label htmlFor="name">
                 Your Name:

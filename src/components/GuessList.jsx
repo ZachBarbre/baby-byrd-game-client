@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import StateContext from '../context' 
+import { get, API_URL } from '../utils/apiConn';
 
 const Main = styled.main`
 /* background-color: var(--primary-light); */
@@ -16,7 +17,7 @@ ul {
   max-width: 840px;
   list-style: none;
   background-color: var(--secondary);
-  padding: 0 2%;
+  padding: 0 3%;
   border-radius: 25px 25px 25px 25px;
 }
 
@@ -28,9 +29,13 @@ li {
 
 h3 {
   font-family: 'Yellowtail', cursive;
-  font-size: 1.65rem;
+  font-size: 1.5rem;
   min-width: 320px;
-  margin: 18px 0;
+  margin: 20px 0;
+}
+
+h3 span {
+  font-size: 1.8rem;
 }
 
 div {
@@ -71,13 +76,22 @@ p {
 
 const GuessList = () => {
   const [value, dispach] = useContext(StateContext);
-  console.log(value);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const guessData = await get(`${API_URL}/guesses`);
+      dispach({type: 'ACTION_GET_DATA', data: guessData});
+    }
+    fetchData();
+  },[dispach]);
+
   return(
-    <Main>  
+    <Main>
       <ul>
+        {value.length === 0 ? <h2>Loading</h2> : ''}  
         {value.map((guess) => (
           <li key={guess._id}>
-            <h3>{guess.name} thinks the baby...</h3>
+            <h3><span>{guess.name}</span> thinks the baby...</h3>
             <div>
               <p>Will be born <strong>{guess.birthDate}</strong>.</p>
               <p className="middle">Will weigh <strong>{guess.babyWeight} lbs</strong>.</p>
