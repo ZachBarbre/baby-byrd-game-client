@@ -184,6 +184,8 @@ const AddGuess = () => {
               <input 
                 type="number"
                 name="babyWeight"
+                inputMode="decimal"
+                step="0.01"
                 value={babyWeight}
                 onChange={(e) => setBabyWeight(e.target.value)}
                 />
