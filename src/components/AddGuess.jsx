@@ -153,7 +153,7 @@ const AddGuess = () => {
     <Section>
       {showForm ? 
         <FormDiv>
-          <Form onSubmit={e => handleSubmit(e)}>
+          {/* <Form onSubmit={e => handleSubmit(e)}>
             {formError ? <p>{formError}</p> : ''}
             <Control>
               <label htmlFor="name">
@@ -213,7 +213,8 @@ const AddGuess = () => {
               </label>
             </Radio>
             <Button type="submit" showForm={showForm}>Add your Guess</Button>
-          </Form>
+          </Form> */}
+          <h3>Thanks for Playing!</h3>
         </FormDiv> 
       :
       <Button type="button" onClick={() => setShowForm(!showForm)}>Add your Guess!</Button>

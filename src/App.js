@@ -4,6 +4,7 @@ import { StateProvider } from './context';
 import GuessList from './components/GuessList';
 import Header from './components/Header';
 import AddGuess from './components/AddGuess';
+import Winner from './components/Winner';
 
 const App = () => {
   const initalState = [];
@@ -12,6 +13,7 @@ const App = () => {
     <div className="App">
       <StateProvider value={useReducer(Reducer, initalState)}>
         <Header />
+        <Winner />
         <GuessList />
         <AddGuess />
       </StateProvider>
