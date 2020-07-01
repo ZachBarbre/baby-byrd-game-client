@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import StateContext from '../context' 
 import { get, API_URL } from '../utils/apiConn';
 import Loading from './Loading';
+import { guesses } from '../utils/guesses';
 
 const Main = styled.main`
 display: flex;
@@ -76,10 +77,11 @@ p {
 
 const GuessList = () => {
   const [value, dispach] = useContext(StateContext);
-
+  // console.log(guesses);
   useEffect(() => {
-    const fetchData = async () => {
-      const guessData = await get(`${API_URL}/guesses`);
+    const fetchData = () => {
+      // const guessData = await get(`${API_URL}/guesses`);
+      const guessData = guesses;
       dispach({type: 'ACTION_GET_DATA', data: guessData});
     }
     fetchData();
